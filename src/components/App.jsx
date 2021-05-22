@@ -14,23 +14,35 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import Collapse from "@material-ui/core/Collapse";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import Home from "./home/Home";
+import Models from "./models/Models";
 import { useStyles } from "./mainStyles";
 import { models, mainLocations } from "./constants";
-import { listGenerator, mainList } from "./lists";
+import { listGenerator, MainList } from "./lists";
 
 export default function App() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [collapseOpen, setCollapseOpen] = React.useState(false);
     const handleDrawerOpen = () => {
         setOpen(true);
     };
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+    const handleCollapseClick = () => {
+        setCollapseOpen(!collapseOpen);
+    };
 
     return (
         <Router>
@@ -83,7 +95,15 @@ export default function App() {
                             <ChevronLeftIcon />
                         </IconButton>
                     </div>
-                    {mainList}
+                    <MainList />
+                    <Divider />
+                    <ListItem button onClick={handleCollapseClick}>
+                        <ListItemText primary="Models" />
+                        {collapseOpen ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
+                    <Collapse in={collapseOpen} timeout="auto" unmountOnExit>
+                        {listGenerator(models)}
+                    </Collapse>
                 </Drawer>
 
                 {/* Main Content */}
@@ -91,10 +111,10 @@ export default function App() {
                     <div className={classes.appBarSpacer} />
                     <Switch>
                         <Route exact path="/">
-                            <Typography>Home</Typography>
+                            <Home />
                         </Route>
                         <Route path="/models">
-                            <Typography>Models</Typography>
+                            <Models />
                         </Route>
                         <Route path="/settings">
                             <Typography>Settings</Typography>
