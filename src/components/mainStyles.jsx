@@ -60,6 +60,9 @@ export const useStyles = makeStyles((theme) => ({
             width: theme.spacing(9),
         },
     },
+    spaceDivider: {
+        paddingBottom: theme.spacing(4),
+    },
     appBarSpacer: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
