@@ -13,7 +13,6 @@ import * as constants from "../constants";
 
 const useHomeStyles = makeStyles((theme) => ({
     title: {
-        marginBottom: theme.spacing(4),
     },
     modelListTitle: {
         padding: theme.spacing(3),
