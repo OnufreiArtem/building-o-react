@@ -26,13 +26,17 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import Home from "./home/Home";
 import Models from "./models/Models";
 import { useStyles } from "./mainStyles";
-import { models, mainLocations } from "./constants";
+import { models, apiURL } from "./constants";
 import { listGenerator, MainList } from "./lists";
+import BasicModelTable from "./model/BasicModel";
+import axios from "axios";
 
 export default function App() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [collapseOpen, setCollapseOpen] = React.useState(false);
+	const [dataList, setDataList] = React.useState([]);
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -42,7 +46,15 @@ export default function App() {
 
     const handleCollapseClick = () => {
         setCollapseOpen(!collapseOpen);
+        setImmediate(!collapseOpen);
     };
+
+	React.useEffect( async () => {
+		await axios.get(apiURL + 'employee-specs/')
+  			.then(response => {setDataList(response.data); console.log(response.data)})
+	}, []);
+
+	
 
     return (
         <Router>
@@ -97,18 +109,19 @@ export default function App() {
                     </div>
                     <MainList />
                     <Divider />
-                    <ListItem button onClick={handleCollapseClick}>
+                    {/* <ListItem button onClick={handleCollapseClick}>
                         <ListItemText primary="Models" />
                         {collapseOpen ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
-                    <Collapse in={collapseOpen} timeout="auto" unmountOnExit>
+                     <Collapse in={collapseOpen} timeout="auto" unmountOnExit>
                         {listGenerator(models)}
-                    </Collapse>
+                    </Collapse> */}
                 </Drawer>
 
                 {/* Main Content */}
                 <main className={classes.content}>
                     <div className={classes.appBarSpacer} />
+                    <div className={classes.spaceDivider} />
                     <Switch>
                         <Route exact path="/">
                             <Home />
@@ -118,6 +131,7 @@ export default function App() {
                         </Route>
                         <Route path="/settings">
                             <Typography>Settings</Typography>
+							{/* <BasicModelTable data={dataList}  /> */}
                         </Route>
                         <Route path="/info">
                             <Typography>Info</Typography>
