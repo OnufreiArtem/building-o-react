@@ -14,11 +14,20 @@ import { Link } from "react-router-dom";
 
 import { nanoid } from "nanoid";
 
-export const listGenerator = (list) => {
+export const listGenerator = (list, selectedIndex, onItemClicked) => {
     return (
         <div>
-            {list.map((model) => (
-                <ListItem key={nanoid()} button>
+            {list.map((model, index) => (
+                <ListItem
+                    key={nanoid()}
+                    selected={
+                        selectedIndex !== undefined
+                            ? selectedIndex === index
+                            : false
+                    }
+                    onClick={(event) => onItemClicked !== undefined && onItemClicked(event, index)}
+                    button
+                >
                     <ListItemText primary={model} />
                 </ListItem>
             ))}
