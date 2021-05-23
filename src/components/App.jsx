@@ -3,9 +3,6 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
-    useRouteMatch,
-    useParams,
 } from "react-router-dom";
 import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -17,19 +14,11 @@ import IconButton from "@material-ui/core/IconButton";
 import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
 import Home from "./home/Home";
 import Models from "./models/Models";
 import { useStyles } from "./mainStyles";
-import { models, apiURL } from "./constants";
+import { models, apiURL, entities } from "./constants";
 import { listGenerator, MainList } from "./lists";
-import BasicModelTable from "./model/BasicModel";
-import axios from "axios";
 
 export default function App() {
     const classes = useStyles();
@@ -48,11 +37,6 @@ export default function App() {
         setCollapseOpen(!collapseOpen);
         setImmediate(!collapseOpen);
     };
-
-	React.useEffect( async () => {
-		await axios.get(apiURL + 'employee-specs/')
-  			.then(response => {setDataList(response.data); console.log(response.data)})
-	}, []);
 
 	
 
@@ -109,13 +93,6 @@ export default function App() {
                     </div>
                     <MainList />
                     <Divider />
-                    {/* <ListItem button onClick={handleCollapseClick}>
-                        <ListItemText primary="Models" />
-                        {collapseOpen ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
-                     <Collapse in={collapseOpen} timeout="auto" unmountOnExit>
-                        {listGenerator(models)}
-                    </Collapse> */}
                 </Drawer>
 
                 {/* Main Content */}
@@ -131,7 +108,6 @@ export default function App() {
                         </Route>
                         <Route path="/settings">
                             <Typography>Settings</Typography>
-							{/* <BasicModelTable data={dataList}  /> */}
                         </Route>
                         <Route path="/info">
                             <Typography>Info</Typography>
