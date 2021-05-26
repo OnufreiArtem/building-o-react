@@ -23,7 +23,7 @@ const CheckboxWidget = props => {
             <MCheckbox
               id={id}
               name={id}
-              checked={value}
+              checked={!!value}
               onChange={event => onChange(event.target.checked)}
               value={schema.title}
             />

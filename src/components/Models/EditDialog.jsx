@@ -60,14 +60,10 @@ export default function EditDialog({
                 }/${itemId}`
             )
             .then((res) => {
-                setData(utils.makeFlat(res.data));
+                setData(utils.makeValuesString(utils.makeFlat(res.data)));
             })
             .catch((err) => console.error(err));
     };
-
-    React.useEffect(() => {
-        //refreshDependencies()
-    }, [formIndex]);
 
     React.useEffect(() => {
         if (shown) {

@@ -558,7 +558,7 @@ export const forms = [
             type: "object",
             required: [
                 "name",
-                "Description",
+                "description",
                 "building",
                 "brigade",
                 "buildingStep",
@@ -604,22 +604,20 @@ export const forms = [
                 beginning: {
                     type: "string",
                     title: "Beginning",
-                    format: "date",
                 },
                 ending: {
                     type: "string",
                     title: "Ending",
-                    format: "date",
                 },
             },
         }),
 
         widget: {
             beginning: {
-                "ui:widget": "date",
+                "ui:widget": "datetime",
             },
             ending: {
-                "ui:widget": "date",
+                "ui:widget": "datetime",
             },
         },
     },

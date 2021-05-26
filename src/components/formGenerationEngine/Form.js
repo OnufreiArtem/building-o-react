@@ -5,6 +5,7 @@ import BaseInput from "./BaseInput";
 import SelectWidget from "./SelectWidget";
 import CheckboxWidget from "./CheckboxWidget";
 import DateWidget from "./DateWidget";
+import DateTimeWidget from "./DateTimeWidget";
 import NumberWidget from "./NumberWidget";
 import FieldTemplate from "./FieldTemplate";
 import RadioWidget from "./RadioWidget";
@@ -18,6 +19,7 @@ const widgets = {
     CheckboxWidget,
     RadioWidget,
     DateWidget,
+    datetime: DateTimeWidget,
     number: NumberWidget,
 };
 
@@ -36,7 +38,7 @@ const Form = ({
             <DialogContent>
                 <MForm
                     formData={formData}
-                    style={{width: 500,}}
+                    style={{width: 500, padding: 10,}}
                     noHtml5Validate
                     FieldTemplate={FieldTemplate}
                     schema={schema}

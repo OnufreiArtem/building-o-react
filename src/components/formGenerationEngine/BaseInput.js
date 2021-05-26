@@ -21,7 +21,7 @@ const BaseInput = props => {
         onChange={event => onChange(event.target.value || null)}
         autoComplete={false}
         InputProps={{
-          style: { fontSize: 22 },
+          style: { fontSize: 18 },
           startAdornment: schema.prefix ? (
             <InputAdornment position="start" style={{ fontSize: 22 }}>
               {schema.prefix}

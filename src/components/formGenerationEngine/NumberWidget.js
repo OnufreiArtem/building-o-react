@@ -23,14 +23,14 @@ const BaseInput = props => {
         fillWidth
         autoComplete="nope"
         InputProps={{
-          style: { fontSize: 22 },
+          style: { fontSize: 18 },
           startAdornment: schema.prefix ? (
-            <InputAdornment position="start" style={{ fontSize: 22 }}>
+            <InputAdornment position="start" style={{ fontSize: 18 }}>
               {schema.prefix}
             </InputAdornment>
           ) : null,
           endAdornment: schema.suffix ? (
-            <InputAdornment position="end" style={{ fontSize: 22 }}>
+            <InputAdornment position="end" style={{ fontSize: 18 }}>
               {schema.suffix}
             </InputAdornment>
           ) : null

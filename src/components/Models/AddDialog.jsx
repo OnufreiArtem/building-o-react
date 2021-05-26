@@ -50,10 +50,6 @@ export default function AddDialog({
     }
 
     React.useEffect(() => {
-        //refreshDependencies()
-    }, [formIndex]);
-
-    React.useEffect(() => {
         if(shown) {
             refreshDependencies();
         }

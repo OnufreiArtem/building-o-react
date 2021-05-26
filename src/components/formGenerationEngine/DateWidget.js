@@ -23,9 +23,9 @@ const DateWidget = (props) => {
             disabled={schema.disabled}
             required={required}
             error={!!(rawErrors && rawErrors.length)}
-            style={{ width: "100%", marginTop: 22 }}
+            style={{ width: "100%", marginTop: 18 }}
         >
-            <FormLabel style={{ fontSize: 22 }} component="legend">
+            <FormLabel style={{ fontSize: 18 }} component="legend">
                 {schema.title}
             </FormLabel>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>

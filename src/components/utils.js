@@ -19,5 +19,14 @@ export const makeFlat = (obj) =>
         { ...obj }
     );
 
-export const makeDateTimeString = (localDateTime) => localDateTime; //`${new Date(...localDateTime.slice(0, 6)).toISOString()}`
-export const makeDateString = (localDate) => localDate; //`${new Date(...localDate.slice(0, 3)).toDateString()}`
+export const makeValuesString = (obj) =>
+    Object.entries(obj).reduce(
+        (acc, curr) => {
+            if(typeof curr[1] !== 'boolean') acc[curr[0]] = `${curr[1]}`;
+            return acc;
+        },
+        { ...obj }
+    );
+
+export const makeDateTimeString = (localDateTime) => localDateTime;
+export const makeDateString = (localDate) => localDate;
