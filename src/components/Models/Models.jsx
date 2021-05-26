@@ -1,11 +1,9 @@
 import React from "react";
 
-import clsx from "clsx";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import IconButton from "@material-ui/core/IconButton";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,13 +13,14 @@ import * as constants from "../constants";
 import BasicModelTable from "../model-table/ModelTable";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+import Drawer from "@material-ui/core/Drawer";
 import axios from "axios";
-import TextField from "@material-ui/core/TextField";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import UpdateIcon from "@material-ui/icons/Update";
+import DeleteDialog from "./DeleteDialog";
+import AddDialog from "./AddDialog";
+import { Box } from "@material-ui/core";
+import { forms } from "../forms";
+import EditDialog from "./EditDialog";
 
 const useModelsStyles = makeStyles((theme) => ({
     title: {
@@ -36,11 +35,17 @@ const useModelsStyles = makeStyles((theme) => ({
         position: "fixed",
     },
     visible: {
-        visibility: "visible"
+        visibility: "visible",
     },
     notVisible: {
-        visibility: "hidden"
-    }
+        visibility: "hidden",
+    },
+    someSpacing: {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+    },
 }));
 
 export default function Models() {
@@ -48,8 +53,13 @@ export default function Models() {
     const classes = useModelsStyles();
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     const [showDialog, setShowDialog] = React.useState(false);
+    const [showEdit, setShowEdit] = React.useState(false);
+    const [showModelDrawer, setShowModelDrawer] = React.useState(false);
     const [dataList, setDataList] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
+    const [showDeleteAlert, setShowDeleteAlert] = React.useState(false);
+    const [selectedToDelete, setSelectedToDelete] = React.useState(undefined);
+    const [selectedToEdit, setSelectedToEdit] = React.useState(undefined);
 
     const handleAddDialogOpen = () => {
         setShowDialog(true);
@@ -59,27 +69,53 @@ export default function Models() {
         setShowDialog(false);
     };
 
-    const handleDelete = (env, data) => {
-        deleteData(data.map(item => item.id))
-        fetchData(true);
+    const handleCancelEditDialog = () => {
+        setShowEdit(false);
+        setSelectedToEdit(undefined);
     }
 
-    const fixedHeightPaper = clsx(mainClasses.paper, mainClasses.fixedHeight);
-    
-    const deleteData = async (ids) => {
-        await ids.forEach(item => {
-            axios.delete( `${constants.apiURL}${
-                Object.values(constants.entities)[selectedIndex].apiPath
-            }/${item}`).then(response => console.log(response)).catch(error => console.log(error))
-        });
-        
+    const handleApplyEditDialog = () => {
+        setShowEdit(false);
+        setSelectedToEdit(undefined);
+        handleRefresh();
     }
+
+    const handleDelete = (env, data) => {
+        deleteData(data.id);
+        handleRefresh();
+    };
+
+    const handleRefresh = (e) => {
+        setLoading(true);
+        fetchData(true);
+    };
+
+    const cancelDeleteAlert = () => {
+        setShowDeleteAlert(false);
+        setSelectedToDelete(undefined);
+    };
+
+    const indeedDeleteAlert = () => {
+        handleDelete(undefined, selectedToDelete);
+        cancelDeleteAlert();
+    };
+
+    const deleteData = async (id) => {
+        await axios
+            .delete(
+                `${constants.apiURL}${
+                    Object.values(constants.entities)[selectedIndex].apiPath
+                }/${id}`
+            )
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error));
+    };
 
     const fetchData = async (mounted) => {
         function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
+            return new Promise((resolve) => setTimeout(resolve, ms));
         }
-        
+
         await sleep(2000);
         await axios
             .get(
@@ -89,7 +125,7 @@ export default function Models() {
             )
             .then((response) => {
                 if (mounted) {
-                    console.log(response.data)
+                    console.log(response.data);
                     setDataList(
                         response.data.map((entity) =>
                             Object.values(constants.entities)[
@@ -100,10 +136,10 @@ export default function Models() {
                     setLoading(false);
                 }
             });
-
     };
 
     React.useEffect(() => {
+        console.log(forms[selectedIndex]);
         let isMounted = true;
         setLoading(true);
         fetchData(isMounted);
@@ -114,39 +150,55 @@ export default function Models() {
 
     return (
         <Container maxWidth="lg" className={mainClasses.container}>
-            {/* <Typography variant="h3" component="h2" className={classes.title}>
-                Hello
-            </Typography> */}
             <Grid container spacing={1}>
                 <Grid item xs={12}>
-                    <Paper height={fixedHeightPaper} className={classes.paper}>
-                        <LinearProgress className={loading ? classes.visible : classes.notVisible} />
-                        <BasicModelTable
-                                listOfData={dataList}
-                                title={
-                                    Object.values(constants.entities)[
-                                        selectedIndex
-                                    ].name
-                                }
-                                onDelete={handleDelete}
-                            />
-                    </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>
+                    <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        flexDirection="row"
+                        alignItems="center"
+                    >
                         <Typography
-                            variant="h6"
-                            className={classes.modelListTitle}
+                            className={classes.someSpacing}
+                            variant="h4"
+                            component="h4"
                         >
-                            Choose your model
+                            Models
                         </Typography>
-                        <Divider />
-                        {listGenerator(
-                            constants.models,
-                            selectedIndex,
-                            (_, index) => setSelectedIndex(index)
-                        )}
-                    </Paper>
+                        <Box>
+                            <Button onClick={() => setShowModelDrawer(true)}>
+                                Select Model
+                            </Button>
+
+                            <IconButton
+                                aria-label="refresh"
+                                className={classes.someSpacing}
+                                onClick={handleRefresh}
+                            >
+                                <UpdateIcon />
+                            </IconButton>
+                        </Box>
+                    </Box>
+                    <LinearProgress
+                        className={
+                            loading ? classes.visible : classes.notVisible
+                        }
+                    />
+                    <BasicModelTable
+                        listOfData={dataList}
+                        title={
+                            Object.values(constants.entities)[selectedIndex]
+                                .name
+                        }
+                        onEdit={(_, data) => {
+                            setSelectedToEdit(data.id);
+                            setShowEdit(true);
+                        }}
+                        onDelete={(_, data) => {
+                            setSelectedToDelete(data);
+                            setShowDeleteAlert(true);
+                        }}
+                    />
                 </Grid>
             </Grid>
             <Fab
@@ -157,39 +209,37 @@ export default function Models() {
             >
                 <AddIcon />
             </Fab>
-
-            <Dialog
-                open={showDialog}
-                onClose={() => handleAddDialogClose()}
-                aria-labelledby="form-dialog-title"
+            <AddDialog
+                shown={showDialog}
+                formIndex={selectedIndex}
+                cancelEvent={handleAddDialogClose}
+                applyEvent={() => {
+                    handleAddDialogClose();
+                    handleRefresh();
+                }}
+            />
+            <EditDialog
+                shown={showEdit}
+                formIndex={selectedIndex}
+                cancelEvent={handleCancelEditDialog}
+                applyEvent={handleApplyEditDialog}
+                itemId={selectedToEdit}
+            />
+            <DeleteDialog
+                shown={showDeleteAlert}
+                cancelEvent={cancelDeleteAlert}
+                applyEvent={indeedDeleteAlert}
+            />
+            <Drawer
+                anchor={"right"}
+                open={showModelDrawer}
+                onClose={() => setShowModelDrawer(false)}
             >
-                <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {/* To subscribe to this website, please enter your email
-                        address here. We will send updates occasionally. */}
-                    </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="name"
-                        label="Email Address"
-                        type="email"
-                        fullWidth
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button
-                        onClick={() => handleAddDialogClose()}
-                        color="primary"
-                    >
-                        Cancel
-                    </Button>
-                    <Button onClick={() => {}} color="primary">
-                        Add
-                    </Button>
-                </DialogActions>
-            </Dialog>
+                {listGenerator(constants.models, selectedIndex, (_, index) => {
+                    setSelectedIndex(index);
+                    setShowModelDrawer(false);
+                })}
+            </Drawer>
         </Container>
     );
 }

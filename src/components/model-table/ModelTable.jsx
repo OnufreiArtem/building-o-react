@@ -5,12 +5,11 @@ import MaterialTable from "material-table";
 import * as utils from "../utils";
 
 export default function BasicModelTable({ listOfData, title, onDelete, onEdit }) {
-    console.log(listOfData ? listOfData[0] : undefined);
     return (
             <MaterialTable
                 columns={utils.generateColumns(listOfData ? listOfData[0] : undefined)}
                 options={{
-                    selection: true,
+                    // selection: true,
                     headerStyle: {
                         whiteSpace: "nowrap",
                     },
@@ -22,10 +21,15 @@ export default function BasicModelTable({ listOfData, title, onDelete, onEdit })
                 title={title}
                 actions={[
                     {
-                      tooltip: 'Remove All Selected Users',
+                      tooltip: 'Remove All Selected Items',
                       icon: 'delete',
                       onClick: onDelete
-                    }
+                    },
+                    {
+                        tooltip: 'Edit Selected Item',
+                        icon: 'edit',
+                        onClick: onEdit
+                      }
                   ]}
             />
             

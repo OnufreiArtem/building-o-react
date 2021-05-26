@@ -10,8 +10,6 @@ import ClassIcon from "@material-ui/icons/Class";
 
 import { useHistory } from "react-router-dom";
 
-import { Link } from "react-router-dom";
-
 import { nanoid } from "nanoid";
 
 export const listGenerator = (list, selectedIndex, onItemClicked) => {
