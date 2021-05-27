@@ -40,7 +40,7 @@ const DateTimeWidget = (props) => {
                 />
             </MuiPickersUtilsProvider>
 
-            {getError(rawErrors)}
+            {getError(rawErrors) && getError(rawErrors)[0]}
         </FormControl>
     );
 };

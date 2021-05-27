@@ -116,7 +116,7 @@ export default function Models() {
             return new Promise((resolve) => setTimeout(resolve, ms));
         }
 
-        await sleep(2000);
+        // await sleep(2000);
         await axios
             .get(
                 `${constants.apiURL}${
@@ -191,6 +191,7 @@ export default function Models() {
                                 .name
                         }
                         onEdit={(_, data) => {
+                            console.log(data);
                             setSelectedToEdit(data.id);
                             setShowEdit(true);
                         }}

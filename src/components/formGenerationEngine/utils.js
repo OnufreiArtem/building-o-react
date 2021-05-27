@@ -10,7 +10,7 @@ export const getError = errors => {
       >
         {info}
       </FormHelperText>
-    ));
+    ))[0];
   }
   return null;
 };

@@ -2,14 +2,10 @@ import React from "react";
 import {
     FormControl,
     FormLabel,
-    RadioGroup,
-    FormControlLabel,
-    Radio,
 } from "@material-ui/core";
 import 'date-fns';
 import {
     MuiPickersUtilsProvider,
-    KeyboardTimePicker,
     KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from '@date-io/date-fns';
@@ -36,12 +32,12 @@ const DateWidget = (props) => {
                     variant="inline"
                     format="yyyy-MM-dd"
                     margin="normal"
-                    value={Date.parse(value)}
-                    onChange={(date) => {console.log(date.toISOString().slice(0, 10)); onChange(date.toISOString().slice(0, 10))}}
+                    value={Date.parse(value || " ")}
+                    onChange={(date) => {console.log(date !== null ? date.toISOString().slice(0, 10) : null); onChange(date !== null ? date.toISOString().slice(0, 10) : null)}}
                 />
             </MuiPickersUtilsProvider>
 
-            {getError(rawErrors)}
+            {getError(rawErrors) && getError(rawErrors)[0]}
         </FormControl>
     );
 };

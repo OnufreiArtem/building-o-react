@@ -115,7 +115,7 @@ export const forms = [
     {
         scheme: (props) => ({
             type: "object",
-            required: ["name", "address", "chief"],
+            required: ["name", "address"],
             properties: {
                 name: {
                     type: "string",
@@ -128,15 +128,6 @@ export const forms = [
                 address: {
                     type: "string",
                     title: "Address",
-                },
-                chief: {
-                    type: "string",
-                    title: "Chief",
-                    anyOf: props[0].map((data) => ({
-                        type: "string",
-                        title: data.second,
-                        enum: [data.first],
-                    })),
                 },
             },
         }),
@@ -317,6 +308,15 @@ export const forms = [
                     title: "Date Of Birth",
                     format: "date",
                 },
+                brigade: {
+                    type: "string",
+                    title: "Brigade",
+                    anyOf: props[1].map((data) => ({
+                        type: "string",
+                        title: data.second,
+                        enum: [data.first],
+                    })),
+                },
                 email: {
                     type: "string",
                     title: "Email",
@@ -326,7 +326,7 @@ export const forms = [
                     title: "Phone Number",
                 },
                 salary: {
-                    type: "string",
+                    type: "number",
                     title: "Salary",
                 },
                 active: {
@@ -336,17 +336,19 @@ export const forms = [
                 hiredDate: {
                     type: "string",
                     title: "HiredDate",
-                    format: "date",
                 },
                 firedDate: {
                     type: "string",
                     title: "FiredDate",
-                    format: "date",
+                    defaultValue: "",
                 },
             },
         }),
 
         widget: {
+            salary: {
+                "ui:widget": "number",
+            },
             dateOfBirth: {
                 "ui:widget": "date",
             },
@@ -371,6 +373,22 @@ export const forms = [
                 description: {
                     type: "string",
                     title: "Description",
+                },
+                type: {
+                    type: "string",
+                    title: "Type",
+                    anyOf: [
+                        {
+                            type: "string",
+                            title: "Person",
+                            enum: ["ENGINEER"],
+                        },
+                        {
+                            type: "string",
+                            title: "Organization",
+                            enum: ["GENERAL"],
+                        },
+                    ],
                 },
             },
         }),
@@ -519,7 +537,7 @@ export const forms = [
                 constructionManagement: {
                     type: "string",
                     title: "Construction Management",
-                    anyOf: props[1].map((data) => ({
+                    anyOf: props[2].map((data) => ({
                         type: "string",
                         title: data.second,
                         enum: [data.first],
@@ -537,7 +555,7 @@ export const forms = [
                 brigadeThatAsked: {
                     type: "string",
                     title: "Brigade That Asked",
-                    anyOf: props[2].map((data) => ({
+                    anyOf: props[1].map((data) => ({
                         type: "string",
                         title: data.second,
                         enum: [data.first],
@@ -636,12 +654,12 @@ export const forms = [
                     title: "Description",
                 },
                 price: {
-                    type: "string",
+                    type: "number",
                     title: "Price",
                 },
                 count: {
-                    type: "string",
-                    title: "count",
+                    type: "number",
+                    title: "Count",
                 },
                 building: {
                     type: "string",
@@ -666,6 +684,12 @@ export const forms = [
         }),
 
         widget: {
+            count: {
+                "ui:widget": "number",
+            },
+            price: {
+                "ui:widget": "number",
+            },
             requestDate: {
                 "ui:widget": "date",
             },

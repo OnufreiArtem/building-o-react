@@ -56,7 +56,7 @@ const SelectWidget = props => {
             </MenuItem>
           ))}
       </MSelect>
-      {getError(rawErrors)}
+      {getError(rawErrors) && getError(rawErrors)[0]}
     </FormControl>
   );
 };

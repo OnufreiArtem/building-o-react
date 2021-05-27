@@ -43,7 +43,7 @@ const MultiSelectWidget = props => {
           onChange(modifyChangeValue(value));
         }}
       />
-      {getError(rawErrors)}
+      {getError(rawErrors) && getError(rawErrors)[0]}
     </div>
   );
 };

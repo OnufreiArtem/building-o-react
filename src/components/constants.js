@@ -49,16 +49,13 @@ const alterBuilding = (object) => ({
     chief: object.chief
         ? `${object.chief.name} ${object.chief.surname}`
         : none,
-    plot: object.plot?.name || none,
+    plot: object.plot?.address || none,
     createdAt: utils.makeDateTimeString(object.createdAt),
     modifiedAt: utils.makeDateTimeString(object.modifiedAt)
 });
 
 const alterManagement = (object) => ({
     ...object,
-    chief: object.chief
-        ? `${object.chief.name} ${object.chief.surname}`
-        : none,
     createdAt: utils.makeDateTimeString(object.createdAt),
     modifiedAt: utils.makeDateTimeString(object.modifiedAt)
 });
@@ -78,6 +75,7 @@ const alterContract = (object) => ({
 const alterEmployee = (object) => ({
     ...object,
     specification: object.specification?.name || none,
+    brigade: object.brigade?.name || none,
     createdAt: utils.makeDateTimeString(object.createdAt),
     modifiedAt: utils.makeDateTimeString(object.modifiedAt)
 });
@@ -141,10 +139,10 @@ export const entities = {
     },
     building: { name: "Building", apiPath: "/buildings", alter: alterBuilding, requires: ["/plots/addresses", "/employees/names"] },
     buildingStep: { name: "Building Steps", apiPath: "/building-steps", alter: defaultAlter, requires: [] },
-    management: { name: "Construction Management", apiPath: "/managements", alter: alterManagement, requires: ["/employees/names"] },
+    management: { name: "Construction Management", apiPath: "/managements", alter: alterManagement, requires: [] },
     contract: { name: "Contract", apiPath: "/contracts", alter: alterContract, requires: ["/customers/contacts", "/managements/addresses", "/plots/addresses"]},
     customer: { name: "Customer", apiPath: "/customers", alter: defaultAlter, requires: [] },
-    employee: { name: "Employee", apiPath: "/employees", alter: alterEmployee, requires: ["/employee-specs/names"] },
+    employee: { name: "Employee", apiPath: "/employees", alter: alterEmployee, requires: ["/employee-specs/names", "/brigades/names"] },
     employeeSpec: {
         name: "Employee Specification",
         apiPath: "/employee-specs",

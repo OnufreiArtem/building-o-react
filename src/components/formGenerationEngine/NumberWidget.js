@@ -12,14 +12,13 @@ const BaseInput = props => {
         error={!!(rawErrors && rawErrors.length)}
         disabled={schema.disabled}
         label={schema.title}
-        type={"number"}
         // to add a "*" in the label
         required={required}
         // null makes the component uncontrolled
-        value={value || ""}
+        value={value || 0}
         // avoid the case of empty string considered as a value
         // and not trigerring required validation
-        onChange={event => onChange(Number.parseInt(event.target.value) || null)}
+        onChange={event => onChange(Number.parseInt(event.target.value.replace("/[^d]/", "")) || null)}
         fillWidth
         autoComplete="nope"
         InputProps={{
@@ -39,7 +38,7 @@ const BaseInput = props => {
         style={{ width: "100%", margin: 0, marginBottom: 20 }}
         type={schema.format}
       />
-      {getError(rawErrors)}
+      {getError(rawErrors) && getError(rawErrors)[0]}
     </div>
   );
 };

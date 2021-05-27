@@ -40,7 +40,7 @@ const RadioWidget = props => {
             />
           ))}
       </RadioGroup>
-      {getError(rawErrors)}
+      {getError(rawErrors) && getError(rawErrors)[0]}
     </FormControl>
   );
 };

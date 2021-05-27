@@ -9,20 +9,23 @@ export const generateColumns = (object) => {
         .map((key) => ({ title: capitalize(key), field: key }));
 };
 
-export const makeFlat = (obj) =>
-    Object.entries(obj).reduce(
+export const makeFlat = (obj) => {
+    console.log(obj);
+    return Object.entries(obj).reduce(
         (acc, curr) => {
-            if (typeof curr[1] === "object") acc[curr[0]] = curr[1].id;
+            if (typeof curr[1] === "object" && curr[1] !== null) acc[curr[0]] = curr[1].id;
 
             return acc;
         },
         { ...obj }
     );
+}
+    
 
 export const makeValuesString = (obj) =>
     Object.entries(obj).reduce(
         (acc, curr) => {
-            if(typeof curr[1] !== 'boolean') acc[curr[0]] = `${curr[1]}`;
+            if(typeof curr[1] !== 'boolean' && typeof curr[1] !== 'number') acc[curr[0]] = `${curr[1]}`;
             return acc;
         },
         { ...obj }

@@ -31,7 +31,7 @@ const CheckboxWidget = props => {
           label={schema.title}
         />
       </FormGroup>
-      {getError(rawErrors)}
+      {getError(rawErrors) && getError(rawErrors)[0]}
     </FormControl>
   );
 };
