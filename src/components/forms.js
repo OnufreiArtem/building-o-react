@@ -182,7 +182,7 @@ export const forms = [
                     title: "Finished",
                 },
                 price: {
-                    type: "string",
+                    type: "number",
                     title: "Price",
                 },
                 signedDate: {
@@ -203,6 +203,9 @@ export const forms = [
         }),
 
         widget: {
+            price: {
+                "ui:widget": "number"
+            },
             projectStartDate: {
                 "ui:widget": "date",
             },

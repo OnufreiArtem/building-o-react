@@ -63,7 +63,7 @@ const alterManagement = (object) => ({
 const alterContract = (object) => ({
     ...object,
     customer: object.customer?.name || none,
-    plot: object.plot?.name || none,
+    plot: object.plot?.address || none,
     constructionManagement: object.constructionManagement?.name || none,
     projectFinishedDate: utils.makeDateString(object.projectFinishedDate),
     projectStartDate: utils.makeDateString(object.projectStartDate),
@@ -114,7 +114,6 @@ const alterScheduleEvent = (object) => ({
     ...object,
     buildingStep: object.buildingStep?.name || none,
     brigade: object.brigade?.name || none,
-    brigade: object.brigade?.name || none,
     building: object.building === undefined ? none : object.building?.plan,
     beginning: utils.makeDateString(object.beginning),
     ending: utils.makeDateString(object.ending),
@@ -127,6 +126,12 @@ const alterSpending = (object) => ({
     building: object.building === undefined ? none : object.building?.plot?.address,
     createdAt: utils.makeDateTimeString(object.createdAt),
     modifiedAt: utils.makeDateTimeString(object.modifiedAt)
+})
+
+const alterTask1 = (object) => ({
+    ...object,
+    first: object.first?.address || none,
+    second: `${object.second.name} ${object.second.second}`,
 })
 
 export const entities = {
@@ -157,4 +162,5 @@ export const entities = {
     // schedule: { name: "Schedule", apiPath: "/schedules", alter: alterSchedule },
     scheduleEvent: { name: "Schedule Event", apiPath: "/schedule-events", alter: alterScheduleEvent, requires: ["/buildings/addresses", "/building-steps/names", "/brigades/names"] },
     spending: { name: "Spending", apiPath: "/spendings", alter: alterSpending, requires: ["/buildings/addresses"] },
+    task_1: { name: "Engineers from specified plot", apiPath: "/engineers-from-plot", alter: alterTask1 }
 };

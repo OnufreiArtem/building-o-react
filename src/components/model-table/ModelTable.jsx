@@ -4,7 +4,7 @@ import MaterialTable from "material-table";
 
 import * as utils from "../utils";
 
-export default function BasicModelTable({ listOfData, title, onDelete, onEdit }) {
+export default function BasicModelTable({ listOfData, title, noActions=false, onDelete, onEdit }) {
     return (
             <MaterialTable
                 columns={utils.generateColumns(listOfData ? listOfData[0] : undefined)}
@@ -19,7 +19,7 @@ export default function BasicModelTable({ listOfData, title, onDelete, onEdit })
                 }}
                 data={listOfData}
                 title={title}
-                actions={[
+                actions={!noActions && [
                     {
                       tooltip: 'Remove All Selected Items',
                       icon: 'delete',

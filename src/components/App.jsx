@@ -1,9 +1,5 @@
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import clsx from "clsx";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -15,16 +11,16 @@ import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Home from "./home/Home";
+import Info from "./info/Info";
 import Models from "./models/Models";
 import { useStyles } from "./mainStyles";
-import { models, apiURL, entities } from "./constants";
-import { listGenerator, MainList } from "./lists";
+import { MainList, AdditionalList } from "./lists";
+import Task1 from './tasks/Task1';
 
 export default function App() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [collapseOpen, setCollapseOpen] = React.useState(false);
-	const [dataList, setDataList] = React.useState([]);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -37,8 +33,6 @@ export default function App() {
         setCollapseOpen(!collapseOpen);
         setImmediate(!collapseOpen);
     };
-
-	
 
     return (
         <Router>
@@ -93,6 +87,7 @@ export default function App() {
                     </div>
                     <MainList />
                     <Divider />
+                    <AdditionalList />
                 </Drawer>
 
                 {/* Main Content */}
@@ -110,7 +105,10 @@ export default function App() {
                             <Typography>Settings</Typography>
                         </Route>
                         <Route path="/info">
-                            <Typography>Info</Typography>
+                            <Info />
+                        </Route>
+                        <Route path="/task_1">
+                            <Task1 />
                         </Route>
                     </Switch>
                 </main>

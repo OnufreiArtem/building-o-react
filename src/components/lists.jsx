@@ -7,6 +7,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from "@material-ui/icons/Info";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ClassIcon from "@material-ui/icons/Class";
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import { useHistory } from "react-router-dom";
 
@@ -33,6 +34,25 @@ export const listGenerator = (list, selectedIndex, onItemClicked) => {
     );
 };
 
+export const listObjectGenerator = (list, selectedId, onItemClicked) => {
+    return (
+        <div>
+            {list.map((model) => (
+                <ListItem
+                    key={model.id}
+                    selected={
+                       model.id === selectedId
+                    }
+                    onClick={(event) => onItemClicked !== undefined && onItemClicked(event, model.id)}
+                    button
+                >
+                    <ListItemText primary={model.data} />
+                </ListItem>
+            ))}
+        </div>
+    );
+};
+
 export const MainList = () => {
     const history = useHistory();
 
@@ -50,12 +70,12 @@ export const MainList = () => {
                 </ListItemIcon>
                 <ListItemText primary="Models" />
             </ListItem>
-            <ListItem onClick={() => history.push("/settings")} button>
+            {/* <ListItem onClick={() => history.push("/settings")} button>
                 <ListItemIcon>
                     <SettingsIcon />
                 </ListItemIcon>
                 <ListItemText primary="Settings" />
-            </ListItem>
+            </ListItem> */}
             <ListItem onClick={() => history.push("/info")} button>
                 <ListItemIcon>
                     <InfoIcon />
@@ -65,3 +85,20 @@ export const MainList = () => {
         </div>
     );
 };
+
+
+export const AdditionalList = () => {
+    const history = useHistory();
+
+    return (
+        <div>
+            <ListItem onClick={() => history.push("/task_1")} button>
+                <ListItemIcon>
+                    <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Task 1" />
+            </ListItem>
+            
+        </div>
+    )
+}
