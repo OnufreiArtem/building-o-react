@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/building-o-react/static/css/main.b80958d2.chunk.css",
-    "main.js": "/building-o-react/static/js/main.6333de56.chunk.js",
-    "main.js.map": "/building-o-react/static/js/main.6333de56.chunk.js.map",
+    "main.js": "/building-o-react/static/js/main.fa81b2bf.chunk.js",
+    "main.js.map": "/building-o-react/static/js/main.fa81b2bf.chunk.js.map",
     "runtime-main.js": "/building-o-react/static/js/runtime-main.aff20f7d.js",
     "runtime-main.js.map": "/building-o-react/static/js/runtime-main.aff20f7d.js.map",
     "static/css/2.c99c13ff.chunk.css": "/building-o-react/static/css/2.c99c13ff.chunk.css",
@@ -30,6 +30,6 @@
     "static/css/2.c99c13ff.chunk.css",
     "static/js/2.bae2bdb8.chunk.js",
     "static/css/main.b80958d2.chunk.css",
-    "static/js/main.6333de56.chunk.js"
+    "static/js/main.fa81b2bf.chunk.js"
   ]
 }
