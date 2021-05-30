@@ -43,7 +43,7 @@ const useTask1Styles = makeStyles((theme) => ({
     },
 }));
 
-export default function Task1() {
+export default function Task1(props) {
     const classes = useTask1Styles();
 
     const [loading, setLoading] = React.useState(false);
@@ -71,6 +71,7 @@ export default function Task1() {
     }, [plotList]);
 
     React.useEffect(() => {
+        console.log(selectedId);
         if (selectedId !== undefined) {
             fetchData();
         }

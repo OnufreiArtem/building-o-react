@@ -24,7 +24,7 @@ const useinfoStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Info() {
+export default function Info(props) {
     const classes = useinfoStyles();
 
     return (

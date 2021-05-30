@@ -15,10 +15,10 @@ import Info from "./info/Info";
 import Models from "./models/Models";
 import { useStyles } from "./mainStyles";
 import { MainList, AdditionalList } from "./lists";
-import Task1 from './tasks/Task1';
+// import Task1 from './tasks/Task1';
 import Task2 from './tasks/Task2';
 
-export default function App() {
+export default function App(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [collapseOpen, setCollapseOpen] = React.useState(false);
@@ -28,11 +28,6 @@ export default function App() {
     };
     const handleDrawerClose = () => {
         setOpen(false);
-    };
-
-    const handleCollapseClick = () => {
-        setCollapseOpen(!collapseOpen);
-        setImmediate(!collapseOpen);
     };
 
     return (
@@ -109,11 +104,12 @@ export default function App() {
                             <Info />
                         </Route>
                         <Route path="/task_1">
-                            <Task1 />
-                        </Route>
-                        <Route path="/task_2">
+                            {/* <Task1 /> */}
                             <Task2 />
                         </Route>
+                        {/* <Route path="/task_2">
+                            <Task2 />
+                        </Route> */}
                     </Switch>
                 </main>
             </div>

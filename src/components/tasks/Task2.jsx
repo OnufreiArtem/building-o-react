@@ -43,7 +43,7 @@ const useTask2Styles = makeStyles((theme) => ({
     },
 }));
 
-export default function Task2() {
+export default function Task2(props) {
     const classes = useTask2Styles();
 
     const [loading, setLoading] = React.useState(false);

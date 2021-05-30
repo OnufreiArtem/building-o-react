@@ -4,8 +4,6 @@ import * as utils from './utils';
 // export const apiURL = "http://localhost:8080/api/v1";
 export const apiURL = "https://buildingo-backend.herokuapp.com/api/v1";
 
-export const mainLocations = ["Home", "...", "..."];
-
 export const createEntityUrl = (index) => apiURL + Object.entries(entities)[index][1].apiPath  
 
 export const models = [

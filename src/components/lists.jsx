@@ -5,7 +5,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from "@material-ui/icons/Info";
-import SettingsIcon from "@material-ui/icons/Settings";
+// import SettingsIcon from "@material-ui/icons/Settings";
 import ClassIcon from "@material-ui/icons/Class";
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
@@ -53,7 +53,7 @@ export const listObjectGenerator = (list, selectedId, onItemClicked) => {
     );
 };
 
-export const MainList = () => {
+export const MainList = (props) => {
     const history = useHistory();
 
     return (
@@ -87,18 +87,18 @@ export const MainList = () => {
 };
 
 
-export const AdditionalList = () => {
+export const AdditionalList = (props) => {
     const history = useHistory();
 
     return (
         <div>
-            <ListItem onClick={() => history.push("/task_1")} button>
+            {/* <ListItem onClick={() => history.push("/task_1")} button>
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>
                 <ListItemText primary="Employees from plots" />
-            </ListItem>
-            <ListItem onClick={() => history.push("/task_2")} button>
+            </ListItem> */}
+            <ListItem onClick={() => history.push("/task_1")} button>
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>

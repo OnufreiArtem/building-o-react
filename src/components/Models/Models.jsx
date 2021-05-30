@@ -48,7 +48,7 @@ const useModelsStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Models() {
+export default function Models(props) {
     const mainClasses = useStyles();
     const classes = useModelsStyles();
     const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -112,11 +112,6 @@ export default function Models() {
     };
 
     const fetchData = async (mounted) => {
-        function sleep(ms) {
-            return new Promise((resolve) => setTimeout(resolve, ms));
-        }
-
-        // await sleep(2000);
         await axios
             .get(
                 `${constants.apiURL}${
