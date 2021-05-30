@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/building-o-react/static/css/main.b80958d2.chunk.css",
+    "main.js": "/building-o-react/static/js/main.1a804a8a.chunk.js",
+    "main.js.map": "/building-o-react/static/js/main.1a804a8a.chunk.js.map",
+    "runtime-main.js": "/building-o-react/static/js/runtime-main.b37d49ce.js",
+    "runtime-main.js.map": "/building-o-react/static/js/runtime-main.b37d49ce.js.map",
+    "static/css/2.c99c13ff.chunk.css": "/building-o-react/static/css/2.c99c13ff.chunk.css",
+    "static/js/2.cca2cef0.chunk.js": "/building-o-react/static/js/2.cca2cef0.chunk.js",
+    "static/js/2.cca2cef0.chunk.js.map": "/building-o-react/static/js/2.cca2cef0.chunk.js.map",
+    "static/js/3.f17459ec.chunk.js": "/building-o-react/static/js/3.f17459ec.chunk.js",
+    "static/js/3.f17459ec.chunk.js.map": "/building-o-react/static/js/3.f17459ec.chunk.js.map",
+    "static/js/4.a57275e9.chunk.js": "/building-o-react/static/js/4.a57275e9.chunk.js",
+    "static/js/4.a57275e9.chunk.js.map": "/building-o-react/static/js/4.a57275e9.chunk.js.map",
+    "static/js/5.d1617379.chunk.js": "/building-o-react/static/js/5.d1617379.chunk.js",
+    "static/js/5.d1617379.chunk.js.map": "/building-o-react/static/js/5.d1617379.chunk.js.map",
+    "static/js/6.606e5523.chunk.js": "/building-o-react/static/js/6.606e5523.chunk.js",
+    "static/js/6.606e5523.chunk.js.map": "/building-o-react/static/js/6.606e5523.chunk.js.map",
+    "index.html": "/building-o-react/index.html",
+    "static/css/2.c99c13ff.chunk.css.map": "/building-o-react/static/css/2.c99c13ff.chunk.css.map",
+    "static/css/main.b80958d2.chunk.css.map": "/building-o-react/static/css/main.b80958d2.chunk.css.map",
+    "static/js/2.cca2cef0.chunk.js.LICENSE.txt": "/building-o-react/static/js/2.cca2cef0.chunk.js.LICENSE.txt",
+    "static/js/3.f17459ec.chunk.js.LICENSE.txt": "/building-o-react/static/js/3.f17459ec.chunk.js.LICENSE.txt",
+    "static/js/4.a57275e9.chunk.js.LICENSE.txt": "/building-o-react/static/js/4.a57275e9.chunk.js.LICENSE.txt",
+    "static/js/5.d1617379.chunk.js.LICENSE.txt": "/building-o-react/static/js/5.d1617379.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/building-o-react/static/media/roboto-vietnamese-400-normal.52cebac0.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b37d49ce.js",
+    "static/css/2.c99c13ff.chunk.css",
+    "static/js/2.cca2cef0.chunk.js",
+    "static/css/main.b80958d2.chunk.css",
+    "static/js/main.1a804a8a.chunk.js"
+  ]
+}
