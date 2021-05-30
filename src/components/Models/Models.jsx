@@ -112,6 +112,10 @@ export default function Models(props) {
     };
 
     const fetchData = async (mounted) => {
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        await sleep(500)
         await axios
             .get(
                 `${constants.apiURL}${
