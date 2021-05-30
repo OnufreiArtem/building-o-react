@@ -37,7 +37,7 @@ export default function Info() {
                 This is an application for building organization. This project
                 is powered with Spring Boot and React.
             </Typography>
-            <Link href="#" underlineNone>
+            <Link href="https://github.com/OnufreiArtem" underlineNone>
                 <Button
                     className={classes.btnMargin}
                     variant="contained"
@@ -46,7 +46,7 @@ export default function Info() {
                     See my GitHub
                 </Button>
             </Link>
-            <Link href="#" underlineNone>
+            <Link href="https://buildingo-backend.herokuapp.com/swagger-ui.html" underlineNone>
                 <Button
                     className={classes.btnMargin}
                     variant="contained"

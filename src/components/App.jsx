@@ -16,6 +16,7 @@ import Models from "./models/Models";
 import { useStyles } from "./mainStyles";
 import { MainList, AdditionalList } from "./lists";
 import Task1 from './tasks/Task1';
+import Task2 from './tasks/Task2';
 
 export default function App() {
     const classes = useStyles();
@@ -109,6 +110,9 @@ export default function App() {
                         </Route>
                         <Route path="/task_1">
                             <Task1 />
+                        </Route>
+                        <Route path="/task_2">
+                            <Task2 />
                         </Route>
                     </Switch>
                 </main>

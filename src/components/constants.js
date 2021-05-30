@@ -1,7 +1,8 @@
 import * as utils from './utils';
 
 
-export const apiURL = "http://localhost:8080/api/v1";
+// export const apiURL = "http://localhost:8080/api/v1";
+export const apiURL = "https://buildingo-backend.herokuapp.com/api/v1";
 
 export const mainLocations = ["Home", "...", "..."];
 
@@ -162,5 +163,6 @@ export const entities = {
     // schedule: { name: "Schedule", apiPath: "/schedules", alter: alterSchedule },
     scheduleEvent: { name: "Schedule Event", apiPath: "/schedule-events", alter: alterScheduleEvent, requires: ["/buildings/addresses", "/building-steps/names", "/brigades/names"] },
     spending: { name: "Spending", apiPath: "/spendings", alter: alterSpending, requires: ["/buildings/addresses"] },
-    task_1: { name: "Engineers from specified plot", apiPath: "/engineers-from-plot", alter: alterTask1 }
+    task_1: { name: "Engineers from specified plot", apiPath: "/specials/engineers-from-plot", alter: alterTask1 },
+    task_2: { name: "Engineers from specified plot", apiPath: "/specials/managements-earnings", alter: (object) => object }
 };

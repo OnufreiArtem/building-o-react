@@ -96,8 +96,15 @@ export const AdditionalList = () => {
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Task 1" />
+                <ListItemText primary="Employees from plots" />
             </ListItem>
+            <ListItem onClick={() => history.push("/task_2")} button>
+                <ListItemIcon>
+                    <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Management income" />
+            </ListItem>
+            
             
         </div>
     )
